@@ -8,244 +8,370 @@
 <title>Birou Traduceri</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1a2744; --navy-light: #243358; --gold: #c9973a; --gold-light: #e8b86d;
-    --cream: #f5f0e8; --cream-dark: #ede7d9; --text: #1a1a2e; --text-muted: #6b7280;
-    --success: #166534; --white: #ffffff; --shadow: 0 4px 24px rgba(26,39,68,0.12); --radius: 16px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; padding-bottom: 110px; }
+:root {
+  --navy:#1a2744; --navy2:#243358; --gold:#c9973a; --gold2:#e8b86d;
+  --cream:#f5f0e8; --cream2:#ede7d9; --text:#1a1a2e; --muted:#6b7280;
+  --green:#166534; --green-bg:#dcfce7; --red:#dc2626; --red-bg:#fee2e2;
+  --blue:#1d4ed8; --blue-bg:#dbeafe;
+  --shadow:0 4px 24px rgba(26,39,68,0.12); --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;padding-bottom:120px}
 
-  /* LOGIN */
-  #login-screen { position: fixed; inset: 0; background: var(--navy); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 32px; }
-  .login-logo { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold); text-align: center; margin-bottom: 8px; }
-  .login-sub { font-size: 13px; color: rgba(255,255,255,0.5); text-align: center; margin-bottom: 48px; }
-  .login-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 28px 24px; width: 100%; max-width: 340px; }
-  .login-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-  .login-input { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 14px 16px; font-size: 18px; color: white; font-family: 'DM Sans', sans-serif; letter-spacing: 3px; outline: none; }
-  .login-input:focus { border-color: var(--gold); }
-  .login-input::placeholder { letter-spacing: 1px; color: rgba(255,255,255,0.25); font-size: 14px; }
-  .login-btn { width: 100%; margin-top: 20px; background: var(--gold); color: var(--navy); border: none; border-radius: 10px; padding: 15px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
-  .login-error { margin-top: 12px; text-align: center; font-size: 13px; color: #fca5a5; display: none; }
+/* LOGIN */
+#login-screen{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2000;padding:32px}
+.ll{font-family:'DM Serif Display',serif;font-size:28px;color:var(--gold);text-align:center;margin-bottom:8px}
+.ls{font-size:13px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:48px}
+.lc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:28px 24px;width:100%;max-width:340px}
+.ll2{font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;display:block}
+.li{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:14px 16px;font-size:18px;color:white;font-family:'DM Sans',sans-serif;letter-spacing:3px;outline:none}
+.li:focus{border-color:var(--gold)}
+.li::placeholder{letter-spacing:1px;color:rgba(255,255,255,0.25);font-size:14px}
+.lb{width:100%;margin-top:20px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;padding:15px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer}
+.le{margin-top:12px;text-align:center;font-size:13px;color:#fca5a5;display:none}
 
-  /* HEADER */
-  .app-header { background: var(--navy); padding: 20px 20px 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(26,39,68,0.3); }
-  .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .app-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); }
-  .logout-btn { background: rgba(255,255,255,0.1); border: none; border-radius: 8px; padding: 8px 12px; color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-  .tabs { display: flex; gap: 6px; }
-  .tab { flex: 1; padding: 9px 6px; background: rgba(255,255,255,0.08); border: none; border-radius: 9px; color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
-  .tab.active { background: var(--gold); color: var(--navy); font-weight: 600; }
+/* HEADER */
+.hdr{background:var(--navy);padding:18px 20px 14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(26,39,68,0.3)}
+.ht{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.htitle{font-family:'DM Serif Display',serif;font-size:19px;color:var(--gold)}
+.logout{background:rgba(255,255,255,0.1);border:none;border-radius:8px;padding:7px 11px;color:rgba(255,255,255,0.7);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+.tabs{display:flex;gap:5px}
+.tab{flex:1;padding:8px 4px;background:rgba(255,255,255,0.08);border:none;border-radius:9px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.tab.active{background:var(--gold);color:var(--navy);font-weight:700}
 
-  .content { padding: 20px 16px; }
-  .section { display: none; }
-  .section.active { display: block; }
+/* CONTENT */
+.content{padding:16px}
+.sec{display:none}.sec.active{display:block}
 
-  /* CARDS */
-  .card { background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
-  .card-title { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 16px; }
+/* CARD */
+.card{background:white;border-radius:var(--r);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.ctitle{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 
-  /* DATE STRIP */
-  .date-strip { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .dsb { background: white; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 16px; font-size: 20px; cursor: pointer; line-height: 1; }
-  .date-label { flex: 1; text-align: center; font-size: 14px; font-weight: 600; color: var(--navy); background: white; border-radius: 10px; padding: 12px 8px; box-shadow: var(--shadow); cursor: pointer; line-height: 1.3; }
-  #hidden-date { position: fixed; opacity: 0; pointer-events: none; top: -100px; }
+/* FORM */
+.fg{margin-bottom:12px}
+.fl{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px}
+.fi{width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:12px 13px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;background:var(--cream)}
+.fi:focus{border-color:var(--gold);background:white}
+select.fi{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 
-  /* DAY SUMMARY */
-  .day-summary { background: var(--navy); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px; display: flex; justify-content: space-around; align-items: center; }
-  .ds-item { text-align: center; }
-  .ds-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--gold); }
-  .ds-label { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
-  .ds-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.1); }
+/* BUTTONS */
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:transform 0.1s}
+.btn:active{transform:scale(0.98)}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-navy{background:var(--navy);color:white}
+.btn-green{background:var(--green);color:white}
+.btn-sm{padding:7px 12px;font-size:12px;border-radius:8px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600}
+.btn-edit{background:var(--blue-bg);color:var(--blue)}
+.btn-del{background:var(--red-bg);color:var(--red)}
 
-  /* FORM */
-  .form-group { margin-bottom: 14px; }
-  .form-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 7px; }
-  .form-input { width: 100%; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 13px 14px; font-size: 16px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: border-color 0.2s; background: var(--cream); }
-  .form-input:focus { border-color: var(--gold); background: white; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* DATE STRIP */
+.dstrip{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.darr{background:white;border:1.5px solid #e5e7eb;border-radius:10px;padding:9px 14px;font-size:18px;cursor:pointer;line-height:1}
+.dlbl{flex:1;text-align:center;font-size:13px;font-weight:600;color:var(--navy);background:white;border-radius:10px;padding:11px 8px;box-shadow:var(--shadow);cursor:pointer;line-height:1.3}
+#hdate{position:fixed;opacity:0;pointer-events:none;top:-100px}
 
-  .venit-preview { background: var(--navy); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
-  .vp-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
-  .vp-amount { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--gold); }
+/* DAY SUMMARY */
+.dsum{background:var(--navy);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;display:flex;justify-content:space-around;align-items:center}
+.dsi{text-align:center}
+.dsv{font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold)}
+.dsl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px}
+.dsdiv{width:1px;height:34px;background:rgba(255,255,255,0.1)}
 
-  .add-btn { width: 100%; padding: 15px; background: var(--gold); color: var(--navy); border: none; border-radius: 12px; font-size: 15px; font-weight: 700; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 12px; transition: transform 0.1s; }
-  .add-btn:active { transform: scale(0.98); }
+/* PROFIT BOX */
+.profit-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.pbox{border-radius:12px;padding:12px;text-align:center}
+.pbox-green{background:var(--green-bg)}
+.pbox-red{background:var(--red-bg)}
+.pbox-blue{background:var(--blue-bg)}
+.pbox-val{font-family:'DM Serif Display',serif;font-size:18px}
+.pbox-val-green{color:var(--green)}
+.pbox-val-red{color:var(--red)}
+.pbox-val-blue{color:var(--blue)}
+.pbox-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;color:var(--muted)}
 
-  /* CLIENT ENTRIES */
-  .client-row { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--cream-dark); gap: 10px; }
-  .client-row:last-child { border-bottom: none; }
-  .cr-num { width: 30px; height: 30px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: var(--navy); flex-shrink: 0; }
-  .cr-info { flex: 1; }
-  .cr-main { font-size: 14px; font-weight: 600; color: var(--text); }
-  .cr-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-  .cr-amount { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--navy); white-space: nowrap; }
-  .cr-del { background: #fee2e2; border: none; border-radius: 8px; padding: 7px 9px; color: #dc2626; cursor: pointer; font-size: 14px; flex-shrink: 0; }
+/* VENIT PREVIEW */
+.vprev{background:var(--navy);border-radius:12px;padding:12px 16px;margin-bottom:12px}
+.vprev-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0}
+.vprev-lbl{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px}
+.vprev-val{font-family:'DM Serif Display',serif;font-size:18px;color:var(--gold)}
+.vprev-val-green{font-family:'DM Serif Display',serif;font-size:18px;color:#4ade80}
+.vprev-val-red{font-family:'DM Serif Display',serif;font-size:16px;color:#f87171}
+.vprev-div{height:1px;background:rgba(255,255,255,0.1);margin:6px 0}
 
-  /* MONTHLY */
-  .month-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .mnb { background: white; border: 1.5px solid #e5e7eb; border-radius: 10px; padding: 10px 16px; font-size: 20px; cursor: pointer; }
-  .mnl { flex: 1; text-align: center; font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--navy); background: white; border-radius: 10px; padding: 10px; box-shadow: var(--shadow); }
+/* CLIENT ROWS */
+.crow{background:var(--cream);border-radius:12px;padding:12px;margin-bottom:8px}
+.crow-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.crow-num{width:26px;height:26px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:white;flex-shrink:0;margin-right:8px;margin-top:2px}
+.crow-info{flex:1}
+.crow-main{font-size:13px;font-weight:600;color:var(--text)}
+.crow-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.crow-actions{display:flex;gap:5px;flex-shrink:0}
+.crow-amounts{display:flex;gap:6px;margin-top:8px}
+.camount{flex:1;text-align:center;padding:6px 4px;border-radius:8px}
+.ca-green{background:var(--green-bg)}
+.ca-red{background:var(--red-bg)}
+.ca-blue{background:var(--blue-bg)}
+.ca-val{font-family:'DM Serif Display',serif;font-size:15px}
+.ca-lbl{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--muted);margin-top:2px}
 
-  .monthly-stats { background: var(--navy); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
-  .ms-item { text-align: center; }
-  .ms-val { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--gold); }
-  .ms-lbl { font-size: 9px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.3px; margin-top: 3px; }
+/* TRANSLATOR ROWS */
+.trow{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--cream2)}
+.trow:last-child{border-bottom:none}
+.ticon{width:38px;height:38px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-right:10px}
+.tinfo{flex:1}
+.tname{font-size:14px;font-weight:600;color:var(--text)}
+.ttarif{font-size:12px;color:var(--muted);margin-top:2px}
+.tearnings{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);text-align:right;margin-right:8px}
 
-  .day-block { margin-bottom: 8px; }
-  .day-hdr { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--cream-dark); border-radius: 8px; }
-  .dh-left { font-weight: 600; font-size: 13px; color: var(--navy); }
-  .dh-right { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--gold); }
-  .day-clients-wrap { padding: 0 4px; }
+/* MONTHLY */
+.mnav{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.mnb{background:white;border:1.5px solid #e5e7eb;border-radius:10px;padding:9px 14px;font-size:18px;cursor:pointer}
+.mnl{flex:1;text-align:center;font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);background:white;border-radius:10px;padding:10px;box-shadow:var(--shadow)}
+.mstats{background:var(--navy);border-radius:var(--r);padding:14px;margin-bottom:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.msi{text-align:center}
+.msv{font-family:'DM Serif Display',serif;font-size:18px;color:var(--gold)}
+.msl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.3px;margin-top:3px}
+.mprofit{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 
-  /* ANNUAL */
-  .annual-row { display: flex; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--cream-dark); }
-  .annual-row:last-child { border-bottom: none; }
-  .ar-name { font-size: 13px; font-weight: 500; color: var(--text); width: 80px; flex-shrink: 0; }
-  .ar-bar-wrap { flex: 1; height: 6px; background: var(--cream-dark); border-radius: 3px; margin: 0 10px; }
-  .ar-bar { height: 100%; border-radius: 3px; background: var(--gold); }
-  .ar-amt { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--navy); min-width: 80px; text-align: right; }
+/* DAY BLOCK */
+.dblock{margin-bottom:8px}
+.dhdr{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--cream2);border-radius:8px;cursor:pointer}
+.dhl{font-weight:600;font-size:13px;color:var(--navy)}
+.dhr{font-family:'DM Serif Display',serif;font-size:14px;color:var(--gold)}
 
-  .grand-box { background: var(--navy); border-radius: 12px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-  .gb-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
-  .gb-val { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--gold); }
+/* ANNUAL */
+.arow{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--cream2)}
+.arow:last-child{border-bottom:none}
+.an{font-size:13px;font-weight:500;color:var(--text);width:75px;flex-shrink:0}
+.ab{flex:1;height:6px;background:var(--cream2);border-radius:3px;margin:0 8px}
+.abf{height:100%;border-radius:3px;background:var(--gold)}
+.aa{font-family:'DM Serif Display',serif;font-size:13px;color:var(--navy);min-width:75px;text-align:right}
+.grand{background:var(--navy);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.glbl{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px}
+.gval{font-family:'DM Serif Display',serif;font-size:24px;color:var(--gold)}
 
-  .empty-state { text-align: center; padding: 36px 20px; color: var(--text-muted); }
-  .ei { font-size: 36px; margin-bottom: 10px; }
-  .et { font-size: 14px; line-height: 1.5; }
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;display:flex;align-items:flex-end;justify-content:center;padding:0}
+.modal{background:white;border-radius:20px 20px 0 0;padding:24px 20px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+.modal-close{background:var(--cream2);border:none;border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer}
+.modal-btns{display:flex;gap:8px;margin-top:14px}
+.modal-btns .btn{flex:1;padding:13px}
 
-  /* TOAST */
-  .toast { position: fixed; bottom: 115px; left: 50%; transform: translateX(-50%) translateY(16px); background: var(--success); color: white; padding: 11px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; opacity: 0; transition: all 0.25s; pointer-events: none; white-space: nowrap; z-index: 500; }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.empty-state{text-align:center;padding:32px 20px;color:var(--muted)}
+.ei{font-size:34px;margin-bottom:10px}
+.et{font-size:13px;line-height:1.5}
+
+.toast{position:fixed;bottom:115px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--green);color:white;padding:11px 22px;border-radius:100px;font-size:14px;font-weight:500;opacity:0;transition:all 0.25s;pointer-events:none;white-space:nowrap;z-index:600}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.sep{height:1px;background:var(--cream2);margin:10px 0}
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
 <div id="login-screen">
-  <div class="login-logo">📜 Birou de Traduceri</div>
-  <div class="login-sub">Registru de activitate</div>
-  <div class="login-card">
-    <label class="login-label">Parolă de acces</label>
-    <input class="login-input" type="password" id="pwd-input" placeholder="Introduceți parola" maxlength="30">
-    <button class="login-btn" onclick="checkLogin()">Intră în aplicație →</button>
-    <div class="login-error" id="login-error">⚠ Parolă incorectă.</div>
+  <div class="ll">📜 Birou de Traduceri</div>
+  <div class="ls">Registru de activitate</div>
+  <div class="lc">
+    <label class="ll2">Parolă de acces</label>
+    <input class="li" type="password" id="pwd" placeholder="Introduceți parola" maxlength="30">
+    <button class="lb" onclick="checkLogin()">Intră în aplicație →</button>
+    <div class="le" id="lerr">⚠ Parolă incorectă.</div>
   </div>
 </div>
 
-<div class="toast" id="toast">✓ Client adăugat!</div>
-<input type="date" id="hidden-date" onchange="onDatePick()">
+<div class="toast" id="toast"></div>
+<input type="date" id="hdate" onchange="onDatePick()">
+
+<!-- MODAL EDIT/ADD CLIENT -->
+<div class="modal-overlay" id="client-modal" style="display:none" onclick="closeClientModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">
+      <span id="modal-title-text">Client nou</span>
+      <button class="modal-close" onclick="closeClientModal()">✕</button>
+    </div>
+    <div class="fg">
+      <label class="fl">Traducător</label>
+      <select class="fi" id="m-translator">
+        <option value="">— Selectează traducător —</option>
+      </select>
+    </div>
+    <div class="fr">
+      <div class="fg">
+        <label class="fl">Nr. Pagini</label>
+        <input class="fi" type="number" id="m-pagini" placeholder="0" min="0" step="0.5" oninput="updateModalPreview()">
+      </div>
+      <div class="fg">
+        <label class="fl">Tarif client/pag.</label>
+        <input class="fi" type="number" id="m-tarif-client" placeholder="RON" min="0" step="0.5" oninput="updateModalPreview()">
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl">Tarif traducător/pag. <span style="color:var(--muted);font-size:10px">(prefilled din profil, modificabil)</span></label>
+      <input class="fi" type="number" id="m-tarif-trad" placeholder="RON" min="0" step="0.5" oninput="updateModalPreview()">
+    </div>
+    <div class="fg">
+      <label class="fl">Limbă / Notă (opțional)</label>
+      <input class="fi" type="text" id="m-nota" placeholder="ex: RO → EN, RO → DE...">
+    </div>
+    <div class="vprev" id="modal-preview">
+      <div class="vprev-row"><div class="vprev-lbl">Încasat de la client</div><div class="vprev-val" id="mp-client">0 RON</div></div>
+      <div class="vprev-div"></div>
+      <div class="vprev-row"><div class="vprev-lbl">Plătit traducătorului</div><div class="vprev-val-red" id="mp-trad">0 RON</div></div>
+      <div class="vprev-div"></div>
+      <div class="vprev-row"><div class="vprev-lbl">Profit birou</div><div class="vprev-val-green" id="mp-profit">0 RON</div></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-navy" onclick="saveClientModal()" id="modal-save-btn">💾 Salvează</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ADD/EDIT TRANSLATOR -->
+<div class="modal-overlay" id="trad-modal" style="display:none" onclick="closeTradModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">
+      <span id="trad-modal-title">Traducător nou</span>
+      <button class="modal-close" onclick="closeTradModal()">✕</button>
+    </div>
+    <div class="fg">
+      <label class="fl">Nume traducător</label>
+      <input class="fi" type="text" id="t-nume" placeholder="ex: Adelina, Ion...">
+    </div>
+    <div class="fr">
+      <div class="fg">
+        <label class="fl">Tarif standard/pag.</label>
+        <input class="fi" type="number" id="t-tarif" placeholder="RON" min="0" step="0.5">
+      </div>
+      <div class="fg">
+        <label class="fl">Specialitate (opț.)</label>
+        <input class="fi" type="text" id="t-spec" placeholder="ex: juridic, medical">
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-gold" onclick="saveTradModal()" id="trad-save-btn">💾 Salvează traducător</button>
+    </div>
+  </div>
+</div>
 
 <!-- HEADER -->
-<div class="app-header" id="app-header" style="display:none">
-  <div class="header-top">
-    <div class="app-title">📜 Birou Traduceri</div>
-    <button class="logout-btn" onclick="logout()">Ieșire</button>
+<div class="hdr" id="app-header" style="display:none">
+  <div class="ht">
+    <div class="htitle">📜 Birou Traduceri</div>
+    <button class="logout" onclick="logout()">Ieșire</button>
   </div>
   <div class="tabs">
     <button class="tab active" onclick="switchTab('azi',this)">📋 Azi</button>
     <button class="tab" onclick="switchTab('lunar',this)">📅 Lunar</button>
     <button class="tab" onclick="switchTab('anual',this)">📊 Anual</button>
+    <button class="tab" onclick="switchTab('traducatori',this)">👤 Trad.</button>
   </div>
 </div>
 
 <div class="content" id="app-content" style="display:none">
 
   <!-- AZI -->
-  <div class="section active" id="section-azi">
-    <div class="date-strip">
-      <button class="dsb" onclick="changeDay(-1)">‹</button>
-      <div class="date-label" id="date-label" onclick="document.getElementById('hidden-date').showPicker&&document.getElementById('hidden-date').showPicker()">—</div>
-      <button class="dsb" onclick="changeDay(1)">›</button>
+  <div class="sec active" id="sec-azi">
+    <div class="dstrip">
+      <button class="darr" onclick="changeDay(-1)">‹</button>
+      <div class="dlbl" id="dlbl" onclick="document.getElementById('hdate').showPicker&&document.getElementById('hdate').showPicker()">—</div>
+      <button class="darr" onclick="changeDay(1)">›</button>
     </div>
-
-    <div class="day-summary" id="day-summary"></div>
-
+    <div class="dsum" id="dsum"></div>
+    <div class="profit-row" id="dprofit"></div>
     <div class="card">
-      <div class="card-title">➕ Client nou</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Nr. Pagini</label>
-          <input class="form-input" type="number" id="inp-pagini" placeholder="0" min="0" step="0.5" oninput="updatePreview()">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tarif / Pagină</label>
-          <input class="form-input" type="number" id="inp-tarif" placeholder="RON" min="0" step="0.5" oninput="updatePreview()">
-        </div>
+      <div class="ctitle">
+        <span id="ctitle-day">Clienți</span>
+        <button class="btn-sm btn-gold" onclick="openClientModal()">➕ Client nou</button>
       </div>
-      <div class="form-group">
-        <label class="form-label">Limbă / Notă (opțional)</label>
-        <input class="form-input" type="text" id="inp-nota" placeholder="ex: RO → EN, RO → DE...">
-      </div>
-      <div class="venit-preview">
-        <div class="vp-label">Venit client</div>
-        <div class="vp-amount" id="venit-preview">0 RON</div>
-      </div>
-      <button class="add-btn" onclick="saveClient()">➕ Adaugă client</button>
-    </div>
-
-    <div class="card">
-      <div class="card-title" id="clients-title">Clienți</div>
       <div id="clients-list"></div>
     </div>
   </div>
 
   <!-- LUNAR -->
-  <div class="section" id="section-lunar">
-    <div class="month-nav">
+  <div class="sec" id="sec-lunar">
+    <div class="mnav">
       <button class="mnb" onclick="changeMonth(-1)">‹</button>
-      <div class="mnl" id="month-label">—</div>
+      <div class="mnl" id="mnl">—</div>
       <button class="mnb" onclick="changeMonth(1)">›</button>
     </div>
-    <div class="monthly-stats" id="monthly-stats"></div>
+    <div class="mstats" id="mstats"></div>
+    <div class="mprofit" id="mprofit"></div>
     <div class="card">
-      <div class="card-title">📋 Activitate pe zile</div>
-      <div id="monthly-list"></div>
+      <div class="ctitle">Activitate pe zile</div>
+      <div id="mlist"></div>
     </div>
   </div>
 
   <!-- ANUAL -->
-  <div class="section" id="section-anual">
+  <div class="sec" id="sec-anual">
     <div class="card">
-      <div class="card-title">📊 Sumar <span id="year-label"></span></div>
-      <div class="grand-box" id="grand-box"></div>
-      <div id="annual-list"></div>
+      <div class="ctitle">Sumar <span id="yr-lbl"></span></div>
+      <div class="grand" id="grand"></div>
+      <div id="alist"></div>
     </div>
   </div>
+
+  <!-- TRADUCATORI -->
+  <div class="sec" id="sec-traducatori">
+    <div class="card">
+      <div class="ctitle">
+        <span>Traducători</span>
+        <button class="btn-sm btn-gold" onclick="openTradModal()">➕ Adaugă</button>
+      </div>
+      <div id="trad-list"></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Câștiguri traducători</div>
+      <div id="trad-earnings"></div>
+    </div>
+  </div>
+
 </div>
 
 <script>
 const PASSWORD = "traduceri2026";
-const KEY = "bt_v3";
+const CKEY = "bt_clients_v3";
+const TKEY = "bt_translators_v1";
+const MO = ["Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"];
 
+// AUTH
 function checkLogin() {
-  if (document.getElementById("pwd-input").value === PASSWORD) {
+  if (document.getElementById("pwd").value === PASSWORD) {
     sessionStorage.setItem("bt_auth","1");
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("app-header").style.display = "block";
     document.getElementById("app-content").style.display = "block";
     initApp();
   } else {
-    document.getElementById("login-error").style.display = "block";
-    document.getElementById("pwd-input").value = "";
+    document.getElementById("lerr").style.display = "block";
+    document.getElementById("pwd").value = "";
   }
 }
-document.getElementById("pwd-input").addEventListener("keydown", e => { if(e.key==="Enter") checkLogin(); });
+document.getElementById("pwd").addEventListener("keydown", e => { if(e.key==="Enter") checkLogin(); });
 function logout() { sessionStorage.removeItem("bt_auth"); location.reload(); }
 
-function getData() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } }
-function setData(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+// STORAGE
+function getClients() { try { return JSON.parse(localStorage.getItem(CKEY)) || []; } catch { return []; } }
+function setClients(a) { localStorage.setItem(CKEY, JSON.stringify(a)); }
+function getTranslators() { try { return JSON.parse(localStorage.getItem(TKEY)) || []; } catch { return []; } }
+function setTranslators(a) { localStorage.setItem(TKEY, JSON.stringify(a)); }
 
-let selDate, curMonth, curYear;
+// STATE
+let selDate, curMonth, curYear, editingClientId = null, editingTradId = null;
 
 function todayStr() { return new Date().toISOString().split("T")[0]; }
 
 function initApp() {
   const now = new Date();
-  selDate  = todayStr();
+  selDate = todayStr();
   curMonth = now.getMonth();
-  curYear  = now.getFullYear();
-  document.getElementById("hidden-date").value = selDate;
+  curYear = now.getFullYear();
+  document.getElementById("hdate").value = selDate;
   refreshAll();
 }
 
@@ -254,204 +380,392 @@ function refreshAll() {
   renderDay();
   renderMonthly();
   renderAnnual();
+  renderTranslators();
 }
 
-// Date nav
+// DATE NAV
 function changeDay(d) {
   const dt = new Date(selDate + "T12:00:00");
   dt.setDate(dt.getDate() + d);
   selDate = dt.toISOString().split("T")[0];
-  document.getElementById("hidden-date").value = selDate;
-  updateDateLabel();
-  renderDay();
+  document.getElementById("hdate").value = selDate;
+  updateDateLabel(); renderDay();
 }
-function onDatePick() {
-  selDate = document.getElementById("hidden-date").value;
-  updateDateLabel();
-  renderDay();
-}
+function onDatePick() { selDate = document.getElementById("hdate").value; updateDateLabel(); renderDay(); }
 function updateDateLabel() {
   const d = new Date(selDate + "T12:00:00");
-  let lbl = d.toLocaleDateString("ro-RO", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+  let lbl = d.toLocaleDateString("ro-RO",{weekday:"long",day:"numeric",month:"long"});
   lbl = lbl.charAt(0).toUpperCase() + lbl.slice(1);
   if (selDate === todayStr()) lbl = "📅 Astăzi";
-  document.getElementById("date-label").textContent = lbl;
+  document.getElementById("dlbl").textContent = lbl;
 }
 
-// Preview
-function updatePreview() {
-  const p = parseFloat(document.getElementById("inp-pagini").value) || 0;
-  const t = parseFloat(document.getElementById("inp-tarif").value) || 0;
-  document.getElementById("venit-preview").textContent = ron(p * t);
+// CLIENT MODAL
+function openClientModal(editId) {
+  editingClientId = editId || null;
+  populateTranslatorSelect();
+  const modal = document.getElementById("client-modal");
+  modal.style.display = "flex";
+
+  if (editId) {
+    const c = getClients().find(x => x.id === editId);
+    document.getElementById("modal-title-text").textContent = "Editează înregistrare";
+    document.getElementById("modal-save-btn").textContent = "✏️ Actualizează";
+    document.getElementById("m-translator").value = c.tradId || "";
+    document.getElementById("m-pagini").value = c.pagini;
+    document.getElementById("m-tarif-client").value = c.tarifClient;
+    document.getElementById("m-tarif-trad").value = c.tarifTrad;
+    document.getElementById("m-nota").value = c.nota || "";
+    updateModalPreview();
+  } else {
+    document.getElementById("modal-title-text").textContent = "Client nou";
+    document.getElementById("modal-save-btn").textContent = "💾 Salvează";
+    document.getElementById("m-translator").value = "";
+    document.getElementById("m-pagini").value = "";
+    document.getElementById("m-tarif-client").value = "";
+    document.getElementById("m-tarif-trad").value = "";
+    document.getElementById("m-nota").value = "";
+    document.getElementById("mp-client").textContent = "0 RON";
+    document.getElementById("mp-trad").textContent = "0 RON";
+    document.getElementById("mp-profit").textContent = "0 RON";
+  }
 }
 
-// Save
-function saveClient() {
-  const pagini = parseFloat(document.getElementById("inp-pagini").value) || 0;
-  const tarif  = parseFloat(document.getElementById("inp-tarif").value) || 0;
-  const nota   = document.getElementById("inp-nota").value.trim();
-  if (!pagini) { alert("Introduceți numărul de pagini!"); return; }
-  if (!tarif)  { alert("Introduceți tariful pe pagină!"); return; }
-  const data = getData();
-  data.push({ id: Date.now(), data: selDate, pagini, tarif, venit: pagini * tarif, nota });
-  setData(data);
-  showToast();
-  document.getElementById("inp-pagini").value = "";
-  document.getElementById("inp-tarif").value  = "";
-  document.getElementById("inp-nota").value   = "";
-  document.getElementById("venit-preview").textContent = "0 RON";
+function closeClientModal(e) {
+  if (e && e.target !== document.getElementById("client-modal")) return;
+  document.getElementById("client-modal").style.display = "none";
+  editingClientId = null;
+}
+
+function populateTranslatorSelect() {
+  const sel = document.getElementById("m-translator");
+  const trads = getTranslators();
+  sel.innerHTML = '<option value="">— Selectează traducător —</option>';
+  trads.forEach(t => {
+    const o = document.createElement("option");
+    o.value = t.id; o.textContent = `${t.nume} (${ron(t.tarif)}/pag.)`;
+    sel.appendChild(o);
+  });
+  sel.onchange = function() {
+    const trad = getTranslators().find(t => t.id == this.value);
+    if (trad) document.getElementById("m-tarif-trad").value = trad.tarif;
+    updateModalPreview();
+  };
+}
+
+function updateModalPreview() {
+  const p  = parseFloat(document.getElementById("m-pagini").value) || 0;
+  const tc = parseFloat(document.getElementById("m-tarif-client").value) || 0;
+  const tt = parseFloat(document.getElementById("m-tarif-trad").value) || 0;
+  const client  = p * tc;
+  const trad    = p * tt;
+  const profit  = client - trad;
+  document.getElementById("mp-client").textContent  = ron(client);
+  document.getElementById("mp-trad").textContent    = ron(trad);
+  document.getElementById("mp-profit").textContent  = ron(profit);
+}
+
+function saveClientModal() {
+  const tradId = document.getElementById("m-translator").value;
+  const pagini = parseFloat(document.getElementById("m-pagini").value) || 0;
+  const tarifClient = parseFloat(document.getElementById("m-tarif-client").value) || 0;
+  const tarifTrad   = parseFloat(document.getElementById("m-tarif-trad").value) || 0;
+  const nota = document.getElementById("m-nota").value.trim();
+
+  if (!pagini)      { alert("Introduceți numărul de pagini!"); return; }
+  if (!tarifClient) { alert("Introduceți tariful pentru client!"); return; }
+
+  const trad = getTranslators().find(t => t.id == tradId);
+  const entry = {
+    data: selDate,
+    tradId: tradId || null,
+    tradNume: trad ? trad.nume : "Nespecificat",
+    pagini, tarifClient, tarifTrad,
+    incasat: pagini * tarifClient,
+    platitTrad: pagini * tarifTrad,
+    profit: pagini * tarifClient - pagini * tarifTrad,
+    nota
+  };
+
+  const clients = getClients();
+  if (editingClientId) {
+    const idx = clients.findIndex(c => c.id === editingClientId);
+    if (idx !== -1) { entry.id = editingClientId; clients[idx] = entry; }
+  } else {
+    entry.id = Date.now();
+    clients.push(entry);
+  }
+  setClients(clients);
+  document.getElementById("client-modal").style.display = "none";
+  editingClientId = null;
+  showToast(editingClientId ? "✏️ Actualizat!" : "✓ Client adăugat!");
   refreshAll();
 }
 
-function delClient(id) {
-  if (!confirm("Ștergeți acest client?")) return;
-  setData(getData().filter(c => c.id !== id));
+function deleteClient(id) {
+  if (!confirm("Ștergeți această înregistrare?")) return;
+  setClients(getClients().filter(c => c.id !== id));
   refreshAll();
 }
 
-// Render Day
+// TRANSLATOR MODAL
+function openTradModal(editId) {
+  editingTradId = editId || null;
+  document.getElementById("trad-modal").style.display = "flex";
+  if (editId) {
+    const t = getTranslators().find(x => x.id === editId);
+    document.getElementById("trad-modal-title").textContent = "Editează traducător";
+    document.getElementById("trad-save-btn").textContent = "✏️ Actualizează";
+    document.getElementById("t-nume").value = t.nume;
+    document.getElementById("t-tarif").value = t.tarif;
+    document.getElementById("t-spec").value = t.spec || "";
+  } else {
+    document.getElementById("trad-modal-title").textContent = "Traducător nou";
+    document.getElementById("trad-save-btn").textContent = "💾 Salvează traducător";
+    document.getElementById("t-nume").value = "";
+    document.getElementById("t-tarif").value = "";
+    document.getElementById("t-spec").value = "";
+  }
+}
+function closeTradModal(e) {
+  if (e && e.target !== document.getElementById("trad-modal")) return;
+  document.getElementById("trad-modal").style.display = "none";
+  editingTradId = null;
+}
+function saveTradModal() {
+  const nume  = document.getElementById("t-nume").value.trim();
+  const tarif = parseFloat(document.getElementById("t-tarif").value) || 0;
+  const spec  = document.getElementById("t-spec").value.trim();
+  if (!nume)  { alert("Introduceți numele traducătorului!"); return; }
+  if (!tarif) { alert("Introduceți tariful standard!"); return; }
+
+  const trads = getTranslators();
+  if (editingTradId) {
+    const idx = trads.findIndex(t => t.id === editingTradId);
+    if (idx !== -1) trads[idx] = { ...trads[idx], nume, tarif, spec };
+  } else {
+    trads.push({ id: Date.now(), nume, tarif, spec });
+  }
+  setTranslators(trads);
+  document.getElementById("trad-modal").style.display = "none";
+  editingTradId = null;
+  showToast("✓ Traducător salvat!");
+  refreshAll();
+}
+function deleteTrad(id) {
+  if (!confirm("Ștergeți acest traducător?")) return;
+  setTranslators(getTranslators().filter(t => t.id !== id));
+  refreshAll();
+}
+
+// RENDER DAY
 function renderDay() {
-  const clients = getData().filter(c => c.data === selDate);
-  const totPag  = clients.reduce((s,c) => s + c.pagini, 0);
-  const totVen  = clients.reduce((s,c) => s + c.venit, 0);
+  const clients = getClients().filter(c => c.data === selDate);
+  const totInc  = clients.reduce((s,c) => s + c.incasat, 0);
+  const totTrad = clients.reduce((s,c) => s + c.platitTrad, 0);
+  const totProf = clients.reduce((s,c) => s + c.profit, 0);
 
-  document.getElementById("day-summary").innerHTML = `
-    <div class="ds-item"><div class="ds-value">${clients.length}</div><div class="ds-label">Clienți</div></div>
-    <div class="ds-divider"></div>
-    <div class="ds-item"><div class="ds-value">${totPag}</div><div class="ds-label">Pagini</div></div>
-    <div class="ds-divider"></div>
-    <div class="ds-item"><div class="ds-value" style="font-size:18px">${ron(totVen)}</div><div class="ds-label">Venit zi</div></div>
+  document.getElementById("dsum").innerHTML = `
+    <div class="dsi"><div class="dsv">${clients.length}</div><div class="dsl">Clienți</div></div>
+    <div class="dsdiv"></div>
+    <div class="dsi"><div class="dsv" style="font-size:16px">${ron(totInc)}</div><div class="dsl">Încasat</div></div>
+    <div class="dsdiv"></div>
+    <div class="dsi"><div class="dsv" style="font-size:16px;color:#4ade80">${ron(totProf)}</div><div class="dsl">Profit</div></div>
   `;
 
-  document.getElementById("clients-title").textContent =
-    clients.length ? `Clienți adăugați (${clients.length})` : "Clienți adăugați";
+  document.getElementById("dprofit").innerHTML = `
+    <div class="pbox pbox-green"><div class="pbox-val pbox-val-green">${ron(totInc)}</div><div class="pbox-lbl">Încasat</div></div>
+    <div class="pbox pbox-red"><div class="pbox-val pbox-val-red">${ron(totTrad)}</div><div class="pbox-lbl">Traducători</div></div>
+    <div class="pbox pbox-blue"><div class="pbox-val pbox-val-blue">${ron(totProf)}</div><div class="pbox-lbl">Profit net</div></div>
+  `;
+
+  document.getElementById("ctitle-day").textContent = clients.length ? `Clienți (${clients.length})` : "Clienți";
 
   const el = document.getElementById("clients-list");
   if (!clients.length) {
-    el.innerHTML = `<div class="empty-state"><div class="ei">👤</div><div class="et">Niciun client pentru această zi.<br>Adăugați primul client!</div></div>`;
+    el.innerHTML = `<div class="empty-state"><div class="ei">👤</div><div class="et">Niciun client pentru această zi.<br>Apasă «Client nou» pentru a adăuga.</div></div>`;
     return;
   }
   el.innerHTML = clients.map((c,i) => `
-    <div class="client-row">
-      <div class="cr-num">${i+1}</div>
-      <div class="cr-info">
-        <div class="cr-main">${c.pagini} pag. × ${ron(c.tarif)}/pag.</div>
-        ${c.nota ? `<div class="cr-sub">📝 ${c.nota}</div>` : ""}
+    <div class="crow">
+      <div class="crow-top">
+        <div class="crow-num">${i+1}</div>
+        <div class="crow-info">
+          <div class="crow-main">${c.pagini} pag. · ${c.tradNume}</div>
+          <div class="crow-sub">${c.nota ? "📝 " + c.nota + " · " : ""}Client: ${ron(c.tarifClient)}/pag. · Trad: ${ron(c.tarifTrad)}/pag.</div>
+        </div>
+        <div class="crow-actions">
+          <button class="btn-sm btn-edit" onclick="openClientModal(${c.id})">✏️</button>
+          <button class="btn-sm btn-del" onclick="deleteClient(${c.id})">🗑</button>
+        </div>
       </div>
-      <div class="cr-amount">${ron(c.venit)}</div>
-      <button class="cr-del" onclick="delClient(${c.id})">🗑</button>
+      <div class="crow-amounts">
+        <div class="camount ca-green"><div class="ca-val" style="color:var(--green)">${ron(c.incasat)}</div><div class="ca-lbl">Încasat</div></div>
+        <div class="camount ca-red"><div class="ca-val" style="color:var(--red)">${ron(c.platitTrad)}</div><div class="ca-lbl">Traducător</div></div>
+        <div class="camount ca-blue"><div class="ca-val" style="color:var(--blue)">${ron(c.profit)}</div><div class="ca-lbl">Profit</div></div>
+      </div>
     </div>
   `).join("");
 }
 
-// Render Monthly
-const MO = ["Ianuarie","Februarie","Martie","Aprilie","Mai","Iunie","Iulie","August","Septembrie","Octombrie","Noiembrie","Decembrie"];
-
+// RENDER MONTHLY
 function changeMonth(d) {
   curMonth += d;
   if (curMonth > 11) { curMonth = 0; curYear++; }
   if (curMonth < 0)  { curMonth = 11; curYear--; }
   renderMonthly();
 }
-
 function renderMonthly() {
-  document.getElementById("month-label").textContent = `${MO[curMonth]} ${curYear}`;
+  document.getElementById("mnl").textContent = `${MO[curMonth]} ${curYear}`;
   const mk = `${curYear}-${String(curMonth+1).padStart(2,"0")}`;
-  const clients = getData().filter(c => c.data.startsWith(mk));
+  const clients = getClients().filter(c => c.data.startsWith(mk));
+  const nrC    = clients.length;
+  const zile   = new Set(clients.map(c => c.data)).size;
+  const totInc = clients.reduce((s,c) => s + c.incasat, 0);
+  const totTrd = clients.reduce((s,c) => s + c.platitTrad, 0);
+  const totPrf = clients.reduce((s,c) => s + c.profit, 0);
 
-  const nrC  = clients.length;
-  const totP = clients.reduce((s,c) => s + c.pagini, 0);
-  const totV = clients.reduce((s,c) => s + c.venit, 0);
-  const zile = new Set(clients.map(c => c.data)).size;
-
-  document.getElementById("monthly-stats").innerHTML = `
-    <div class="ms-item"><div class="ms-val">${zile}</div><div class="ms-lbl">Zile</div></div>
-    <div class="ms-item"><div class="ms-val">${nrC}</div><div class="ms-lbl">Clienți</div></div>
-    <div class="ms-item"><div class="ms-val">${totP}</div><div class="ms-lbl">Pagini</div></div>
-    <div class="ms-item"><div class="ms-val" style="font-size:15px">${ron(totV)}</div><div class="ms-lbl">Venit</div></div>
+  document.getElementById("mstats").innerHTML = `
+    <div class="msi"><div class="msv">${zile}</div><div class="msl">Zile</div></div>
+    <div class="msi"><div class="msv">${nrC}</div><div class="msl">Clienți</div></div>
+    <div class="msi"><div class="msv" style="font-size:15px">${ron(totInc)}</div><div class="msl">Încasat</div></div>
+  `;
+  document.getElementById("mprofit").innerHTML = `
+    <div class="pbox pbox-red"><div class="pbox-val pbox-val-red">${ron(totTrd)}</div><div class="pbox-lbl">Plătit traducători</div></div>
+    <div class="pbox pbox-blue"><div class="pbox-val pbox-val-blue">${ron(totPrf)}</div><div class="pbox-lbl">Profit net birou</div></div>
   `;
 
-  const el = document.getElementById("monthly-list");
+  const el = document.getElementById("mlist");
   if (!clients.length) {
     el.innerHTML = `<div class="empty-state"><div class="ei">📅</div><div class="et">Nicio activitate în această lună.</div></div>`;
     return;
   }
-
   const byDate = {};
   clients.forEach(c => {
-    if (!byDate[c.data]) byDate[c.data] = { list:[], venit:0, pagini:0 };
+    if (!byDate[c.data]) byDate[c.data] = { list:[], inc:0, prf:0 };
     byDate[c.data].list.push(c);
-    byDate[c.data].venit  += c.venit;
-    byDate[c.data].pagini += c.pagini;
+    byDate[c.data].inc += c.incasat;
+    byDate[c.data].prf += c.profit;
   });
-
   el.innerHTML = Object.keys(byDate).sort((a,b) => b.localeCompare(a)).map(dt => {
-    const d   = new Date(dt + "T12:00:00");
-    const g   = byDate[dt];
-    const lbl = d.toLocaleDateString("ro-RO", { weekday:"short", day:"numeric", month:"short" });
-    return `
-      <div class="day-block">
-        <div class="day-hdr">
-          <div class="dh-left">${lbl} · ${g.list.length} client${g.list.length!==1?"ți":""}</div>
-          <div class="dh-right">${ron(g.venit)}</div>
-        </div>
-        <div class="day-clients-wrap">
-          ${g.list.map((c,i) => `
-            <div class="client-row">
-              <div class="cr-num">${i+1}</div>
-              <div class="cr-info">
-                <div class="cr-main">${c.pagini} pag. × ${ron(c.tarif)}/pag.</div>
-                ${c.nota ? `<div class="cr-sub">📝 ${c.nota}</div>` : ""}
-              </div>
-              <div class="cr-amount">${ron(c.venit)}</div>
-            </div>
-          `).join("")}
-        </div>
+    const d = new Date(dt+"T12:00:00");
+    const g = byDate[dt];
+    const lbl = d.toLocaleDateString("ro-RO",{weekday:"short",day:"numeric",month:"short"});
+    return `<div class="dblock">
+      <div class="dhdr">
+        <div class="dhl">${lbl} · ${g.list.length} client${g.list.length!==1?"ți":""}</div>
+        <div class="dhr">${ron(g.inc)} <span style="font-size:11px;color:rgba(255,255,255,0.6)">/ profit ${ron(g.prf)}</span></div>
       </div>
-    `;
+      ${g.list.map((c,i) => `
+        <div class="crow" style="margin-top:6px">
+          <div class="crow-top">
+            <div class="crow-num">${i+1}</div>
+            <div class="crow-info">
+              <div class="crow-main">${c.pagini} pag. · ${c.tradNume}</div>
+              <div class="crow-sub">${c.nota ? "📝 "+c.nota : ""}</div>
+            </div>
+          </div>
+          <div class="crow-amounts">
+            <div class="camount ca-green"><div class="ca-val" style="color:var(--green)">${ron(c.incasat)}</div><div class="ca-lbl">Încasat</div></div>
+            <div class="camount ca-red"><div class="ca-val" style="color:var(--red)">${ron(c.platitTrad)}</div><div class="ca-lbl">Traducător</div></div>
+            <div class="camount ca-blue"><div class="ca-val" style="color:var(--blue)">${ron(c.profit)}</div><div class="ca-lbl">Profit</div></div>
+          </div>
+        </div>
+      `).join("")}
+    </div>`;
   }).join("");
 }
 
-// Render Annual
+// RENDER ANNUAL
 function renderAnnual() {
   const yr = new Date().getFullYear();
-  document.getElementById("year-label").textContent = yr;
-  const all  = getData().filter(c => c.data.startsWith(String(yr)));
-  const totV = all.reduce((s,c) => s + c.venit, 0);
-
-  document.getElementById("grand-box").innerHTML = `
-    <div class="gb-label">Total venit ${yr}</div>
-    <div class="gb-val">${ron(totV)}</div>
+  document.getElementById("yr-lbl").textContent = yr;
+  const all = getClients().filter(c => c.data.startsWith(String(yr)));
+  const totInc = all.reduce((s,c) => s + c.incasat, 0);
+  const totPrf = all.reduce((s,c) => s + c.profit, 0);
+  document.getElementById("grand").innerHTML = `
+    <div><div class="glbl">Total încasat ${yr}</div><div class="gval">${ron(totInc)}</div></div>
+    <div style="text-align:right"><div class="glbl">Profit net</div><div class="gval" style="color:#4ade80">${ron(totPrf)}</div></div>
   `;
-
   const mData = MO.map((name,i) => {
     const mk = `${yr}-${String(i+1).padStart(2,"0")}`;
     const me = all.filter(c => c.data.startsWith(mk));
-    return { name, venit: me.reduce((s,c) => s + c.venit, 0), nr: me.length };
+    return { name, inc: me.reduce((s,c)=>s+c.incasat,0), prf: me.reduce((s,c)=>s+c.profit,0) };
   });
-  const maxV = Math.max(...mData.map(m => m.venit), 1);
-
-  document.getElementById("annual-list").innerHTML = mData.map(m => `
-    <div class="annual-row">
-      <div class="ar-name">${m.name}</div>
-      <div class="ar-bar-wrap"><div class="ar-bar" style="width:${(m.venit/maxV*100).toFixed(1)}%"></div></div>
-      <div class="ar-amt">${m.venit > 0 ? ron(m.venit) : "—"}</div>
+  const maxV = Math.max(...mData.map(m=>m.inc),1);
+  document.getElementById("alist").innerHTML = mData.map(m => `
+    <div class="arow">
+      <div class="an">${m.name}</div>
+      <div class="ab"><div class="abf" style="width:${(m.inc/maxV*100).toFixed(1)}%"></div></div>
+      <div class="aa">${m.inc > 0 ? ron(m.inc) : "—"}</div>
     </div>
   `).join("");
 }
 
-function ron(v) { return (v||0).toLocaleString("ro-RO",{minimumFractionDigits:0,maximumFractionDigits:2}) + " RON"; }
+// RENDER TRANSLATORS
+function renderTranslators() {
+  const trads = getTranslators();
+  const clients = getClients();
 
-function showToast() {
+  const tlist = document.getElementById("trad-list");
+  if (!trads.length) {
+    tlist.innerHTML = `<div class="empty-state"><div class="ei">👤</div><div class="et">Niciun traducător adăugat încă.<br>Apasă «Adaugă» pentru a începe.</div></div>`;
+  } else {
+    tlist.innerHTML = trads.map(t => `
+      <div class="trow">
+        <div class="ticon">👤</div>
+        <div class="tinfo">
+          <div class="tname">${t.nume}</div>
+          <div class="ttarif">${ron(t.tarif)}/pag.${t.spec ? " · " + t.spec : ""}</div>
+        </div>
+        <div class="crow-actions">
+          <button class="btn-sm btn-edit" onclick="openTradModal(${t.id})">✏️</button>
+          <button class="btn-sm btn-del" onclick="deleteTrad(${t.id})">🗑</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Earnings per translator
+  const earningsEl = document.getElementById("trad-earnings");
+  if (!trads.length) { earningsEl.innerHTML = ""; return; }
+
+  const earnings = trads.map(t => {
+    const tc = clients.filter(c => c.tradId == t.id);
+    return {
+      ...t,
+      total: tc.reduce((s,c) => s + c.platitTrad, 0),
+      nrLucrari: tc.length,
+      totalPagini: tc.reduce((s,c) => s + c.pagini, 0)
+    };
+  }).sort((a,b) => b.total - a.total);
+
+  earningsEl.innerHTML = earnings.map(t => `
+    <div class="trow">
+      <div class="ticon">💰</div>
+      <div class="tinfo">
+        <div class="tname">${t.nume}</div>
+        <div class="ttarif">${t.nrLucrari} lucrări · ${t.totalPagini} pagini</div>
+      </div>
+      <div class="tearnings">${t.total > 0 ? ron(t.total) : "—"}</div>
+    </div>
+  `).join("");
+}
+
+// HELPERS
+function ron(v) { return (v||0).toLocaleString("ro-RO",{minimumFractionDigits:0,maximumFractionDigits:2})+" RON"; }
+
+function showToast(msg) {
   const t = document.getElementById("toast");
+  t.textContent = msg || "✓ Salvat!";
   t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 2200);
 }
 
 function switchTab(name, btn) {
-  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".sec").forEach(s => s.classList.remove("active"));
   document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
-  document.getElementById("section-"+name).classList.add("active");
+  document.getElementById("sec-"+name).classList.add("active");
   btn.classList.add("active");
 }
 
